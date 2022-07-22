@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="textviewSenha">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">40sp</item>
+        <item name="contentDescription">Textview da senha</item>
+        <item name="android:background">@drawable/border_normal</item>
+    </style>
+
+
+
+    <style name="textviewTentativa">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:inputType">none</item>
+        <item name="android:longClickable">false</item>
+        <item name="android:textIsSelectable">false</item>
+        <item name="android:background">@drawable/border_normal</item>
+    </style>
+</resources>

@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Master Senha</string>
+
+    <string name="txt_vitoria">VOCÊ GANHOU!!</string>
+    <string name="txt_derrota">VOCÊ PERDEU!!</string>
+    <string name="txt_clique_novo_jogo">Clique em Novo Jogo</string>
+    <string name="txt_infomar_todos_digitos_teste">Você precisa informar todos os números para realizar o teste da senha</string>
+    <string name="txt_frase_efeito1">Tente descobrir a senha secreta.</string>
+
+    <string name="btn_novo_jogo">Novo Jogo</string>
+    <string name="btn_testar_senha">Testar Senha</string>
+
+    <string name="radiobutton_4numeros">4 Números</string>
+    <string name="radiobutton_5numeros">5 Números</string>
+    <string name="switch_numeros_distintos">Números Distintos</string>
+
+
+    <string name="txt_tentativa">Tentativa</string>
+    <string name="txt_historico_tentativa">Histórico Tentativas</string>
+    <string name="txt_0">0</string>
+    <string name="txt_1">1</string>
+    <string name="txt_2">2</string>
+    <string name="txt_3">3</string>
+    <string name="txt_4">4</string>
+    <string name="txt_5">5</string>
+    <string name="txt_6">6</string>
+    <string name="txt_7">7</string>
+    <string name="txt_8">8</string>
+    <string name="txt_9">9</string>
+    <string name="txt_10">10</string>
+
+
+    <!-- Textos Content Description -->
+    <string name="content_txt_tentativa">Campo com o dígito para tentativa de senha</string>
+    <string name="content_btn_reset">Botão para resetar o jogo</string>
+    <string name="content_btn_config">Botão de configurações do jogo</string>
+</resources>
