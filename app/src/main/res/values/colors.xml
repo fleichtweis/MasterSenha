@@ -5,24 +5,23 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
+
+    <!-- Cores App - Personalizadas -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey_900">#FF212121</color>
+    <color name="grey_600">#FF757575</color>
+    <color name="grey_400">#FFBDBDBD</color>
 
+    <color name="indigo_900">#FF1A237E</color>
+    <color name="indigo_light">#FF534BAE</color>
+    <color name="indigo_dark">#FF000051</color>
+    <color name="indigo_100">#FFC5CAE9</color>
 
-<color name="green_escuro">#FF020202</color>
-<color name="green_semi_escuro">#FF0D2818</color>
-<color name="green">#FF04471C</color>
-<color name="green_claro">#FF058C42</color>
-<color name="green_neon">#FF16DB65</color>
-<color name="green_neon2">#FF31cb00</color>
-
-
-<color name="green_musgo">#FF606C38</color>
-<color name="green_musgo_escuro">#FF283618</color>
-<color name="areia">#FFFEFAE0</color>
-<color name="marrom_claro">#FFDDA15E</color>
-<color name="marrom">#FFBC6C25</color>
-
+    <color name="amber_500">#FFFFC107</color>
+    <color name="amber_light">#FFFFF350</color>
+    <color name="amber_dark">#FFC79100</color>
 
 
 

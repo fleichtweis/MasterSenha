@@ -244,6 +244,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/amber_500"
         android:contentDescription="@string/content_btn_reset"
         android:minHeight="48dp"
         android:scaleType="centerCrop"
@@ -320,8 +321,6 @@
     <TextView
         android:id="@+id/txt_senhaDig1"
         style="@style/textviewSenha"
-        android:layout_width="50dp"
-        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineSenha"
@@ -334,8 +333,6 @@
     <TextView
         android:id="@+id/txt_senhaDig2"
         style="@style/textviewSenha"
-        android:layout_width="50dp"
-        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineSenha"
@@ -347,8 +344,6 @@
     <TextView
         android:id="@+id/txt_senhaDig3"
         style="@style/textviewSenha"
-        android:layout_width="50dp"
-        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineSenha"
@@ -360,8 +355,6 @@
     <TextView
         android:id="@+id/txt_senhaDig4"
         style="@style/textviewSenha"
-        android:layout_width="50dp"
-        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineSenha"
@@ -373,8 +366,6 @@
     <TextView
         android:id="@+id/txt_senhaDig5"
         style="@style/textviewSenha"
-        android:layout_width="50dp"
-        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:visibility="visible"
@@ -387,8 +378,6 @@
     <TextView
         android:id="@+id/txt_tentativaDig1"
         style="@style/textviewTentativa"
-        android:layout_width="48dp"
-        android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -402,8 +391,6 @@
     <TextView
         android:id="@+id/txt_tentativaDig2"
         style="@style/textviewTentativa"
-        android:layout_width="48dp"
-        android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -417,8 +404,6 @@
     <TextView
         android:id="@+id/txt_tentativaDig4"
         style="@style/textviewTentativa"
-        android:layout_width="48dp"
-        android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -432,8 +417,6 @@
     <TextView
         android:id="@+id/txt_tentativaDig3"
         style="@style/textviewTentativa"
-        android:layout_width="48dp"
-        android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -447,8 +430,6 @@
     <TextView
         android:id="@+id/txt_tentativaDig5"
         style="@style/textviewTentativa"
-        android:layout_width="48dp"
-        android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -469,18 +450,6 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/txt_tentativaDig1"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_numTentativa"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_1"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_tentativaDig1"
-        app:layout_constraintEnd_toEndOf="@+id/txt_tentativas"
-        app:layout_constraintStart_toStartOf="@+id/txt_tentativas"
-        app:layout_constraintTop_toTopOf="@+id/txt_tentativaDig1" />
 
     <TextView
         android:id="@+id/txt_info"

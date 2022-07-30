@@ -1,6 +1,9 @@
 package com.fleichtweis.mastersenha
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -88,7 +91,6 @@ class MainActivity : AppCompatActivity() {
     // TextView's
     lateinit var txtInfo: TextView
     lateinit var txtTentativas: TextView
-    lateinit var txtNumeroTentativa: TextView
     lateinit var txtHistoricoTentativas: TextView
 
 
@@ -99,8 +101,6 @@ class MainActivity : AppCompatActivity() {
 
         btnNovoAndTesteJogo = findViewById(R.id.btn_newAndTestGame)
         btnConfiguracoes = findViewById(R.id.imageBtnConfig)
-
-        btnConfiguracoes.visibility = View.INVISIBLE
 
         btnReset = findViewById(R.id.imageBtnReset)
         radioBtn4Numeros = findViewById(R.id.radioBtn4numeros)
@@ -131,7 +131,6 @@ class MainActivity : AppCompatActivity() {
         txtTentativaDig5 = findViewById(R.id.txt_tentativaDig5)
 
         txtInfo = findViewById(R.id.txt_info)
-        txtNumeroTentativa = findViewById(R.id.txt_numTentativa)
         txtTentativas = findViewById(R.id.txt_tentativas)
         txtHistoricoTentativas = findViewById(R.id.txt_historicoTentativas)
 
@@ -162,9 +161,31 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnReset.setOnClickListener {
-            //MOSTRAR MENSAGEM SE REALMENTE DESEJA ENCERRAR O JOGO ATUAL
 
-            fimJogo()
+            if(tentativa != 1) {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Encerrar jogo")
+                    .setMessage("Deseja realmente sair do jogo atual?\nAo encerrar o jogo atual, o sistema contará como desistência, portanto contabilizará como derrota.")
+                    .setPositiveButton("Sim") { _, _ ->
+                        fimJogo()
+                    }
+                    .setNegativeButton("Não") { dialog, _ ->
+                        dialog.cancel()
+                    }
+
+                val dialog: AlertDialog? = builder.create()
+                dialog?.show()
+            } else{
+                //Muda nome e Espera click no botão de novo jogo.
+                btnNovoAndTesteJogo.text = getText(R.string.btn_novo_jogo)
+                jogando = false
+                configuracoesIniciais()
+            }
+        }
+
+        btnConfiguracoes.setOnClickListener {
+            val intent = Intent(this, ConfiguracoesActivity::class.java)
+            startActivity(intent)
         }
 
         //Função já chama as configurações iniciais
@@ -202,9 +223,33 @@ class MainActivity : AppCompatActivity() {
                 textviewTentativaSelecionado = 5
             }
             else -> {
-                //textviewTentativaBorderNormal()
+                textviewTentativaSelecionado = 0
             }
         }
+    }
+
+    fun focoProximoTextviewTentativa(){
+        if (numeroCasas == 4){
+            when(textviewTentativaSelecionado){
+                0 -> textviewTentativa(txtTentativaDig1)
+                1 -> textviewTentativa(txtTentativaDig2)
+                2 -> textviewTentativa(txtTentativaDig3)
+                3 -> textviewTentativa(txtTentativaDig4)
+                4 -> textviewTentativa(txtTentativaDig1)
+                else -> textviewTentativa(txtTentativaDig1)
+            }
+        } else{
+            when(textviewTentativaSelecionado){
+                0 -> textviewTentativa(txtTentativaDig1)
+                1 -> textviewTentativa(txtTentativaDig2)
+                2 -> textviewTentativa(txtTentativaDig3)
+                3 -> textviewTentativa(txtTentativaDig4)
+                4 -> textviewTentativa(txtTentativaDig5)
+                5 -> textviewTentativa(txtTentativaDig1)
+                else -> textviewTentativa(txtTentativaDig1)
+            }
+        }
+
     }
 
     //Clique em um dos botões numéricos
@@ -233,6 +278,7 @@ class MainActivity : AppCompatActivity() {
             5 -> txtTentativaDig5.text = textoBotao
         }
 
+        focoProximoTextviewTentativa()
     }
 
     fun btnNewAndTestGame(view: View){
@@ -280,6 +326,10 @@ class MainActivity : AppCompatActivity() {
 
                         //Texto muda para tentativa seguinte: 2, 3, 4, ...
                         componentesMudaTextoNumeroTentativa()
+
+                        //Foco no primeiro campo da tentativa
+                        textviewTentativaSelecionado = 0
+                        focoProximoTextviewTentativa()
                     }
                 } else{
                     txtInfo.text = getText(R.string.txt_infomar_todos_digitos_teste)
@@ -295,6 +345,7 @@ class MainActivity : AppCompatActivity() {
         tentativa = 1
         vitoria = false
         jogoFinalizado = false
+        textviewTentativaSelecionado = 0
 
         //Gera nova senha e mostra senha bloqueada pro usuário.
         gerarSenha()
@@ -313,7 +364,6 @@ class MainActivity : AppCompatActivity() {
         componentesTextviewTentativaVisivel()
 
         txtTentativas.visibility = View.VISIBLE
-        txtNumeroTentativa.visibility = View.VISIBLE
         txtHistoricoTentativas.visibility = View.VISIBLE
 
         componentesHabilitaBotoesNumericos()
@@ -322,7 +372,8 @@ class MainActivity : AppCompatActivity() {
         txtInfo.text = getText(R.string.txt_frase_efeito1)
 
         //Foco no primeiro digito, textview tentativa
-
+        //textviewTentativa(txtTentativaDig1)
+        focoProximoTextviewTentativa()
 
         //Espera senha para teste.
         btnNovoAndTesteJogo.text =  getText(R.string.btn_testar_senha)
@@ -445,7 +496,6 @@ class MainActivity : AppCompatActivity() {
         componentesTextviewTentativaInvisivel()
 
         txtTentativas.visibility = View.INVISIBLE
-        txtNumeroTentativa.visibility = View.INVISIBLE
         txtHistoricoTentativas.visibility = View.INVISIBLE
 
         componentesDesabilitaBotoesNumericos()
@@ -577,13 +627,15 @@ class MainActivity : AppCompatActivity() {
     fun componentesEstadoBotoesConfiguracao(){
         if (jogando){
             btnReset.isEnabled = true
+            btnReset.visibility = View.VISIBLE
             btnConfiguracoes.isEnabled = false
             switchNumerosDistintos.isEnabled = false
             radioBtn4Numeros.isEnabled = false
             radioBtn5Numeros.isEnabled = false
         } else{
             btnReset.isEnabled = false
-            //btnConfiguracoes.isEnabled = true
+            btnReset.visibility = View.INVISIBLE
+            btnConfiguracoes.isEnabled = true
             switchNumerosDistintos.isEnabled = true
             radioBtn4Numeros.isEnabled = true
             radioBtn5Numeros.isEnabled = true
@@ -600,17 +652,17 @@ class MainActivity : AppCompatActivity() {
 
     fun componentesMudaTextoNumeroTentativa() {
         when(tentativa){
-            1 -> txtNumeroTentativa.text = getText(R.string.txt_1)
-            2 -> txtNumeroTentativa.text = getText(R.string.txt_2)
-            3 -> txtNumeroTentativa.text = getText(R.string.txt_3)
-            4 -> txtNumeroTentativa.text = getText(R.string.txt_4)
-            5 -> txtNumeroTentativa.text = getText(R.string.txt_5)
-            6 -> txtNumeroTentativa.text = getText(R.string.txt_6)
-            7 -> txtNumeroTentativa.text = getText(R.string.txt_7)
-            8 -> txtNumeroTentativa.text = getText(R.string.txt_8)
-            9 -> txtNumeroTentativa.text = getText(R.string.txt_9)
-            10 -> txtNumeroTentativa.text = getText(R.string.txt_10)
-            else -> txtNumeroTentativa.text = getText(R.string.txt_0)
+            1 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_1)}"
+            2 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_2)}"
+            3 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_3)}"
+            4 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_4)}"
+            5 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_5)}"
+            6 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_6)}"
+            7 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_7)}"
+            8 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_8)}"
+            9 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_9)}"
+            10 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_10)}"
+            else -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_0)}"
         }
     }
 
