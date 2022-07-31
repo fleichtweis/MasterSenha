@@ -15,7 +15,7 @@
         android:paddingEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/txt_config_quantos_numeros">
 
         <RadioButton
             android:id="@+id/radioBtn4numeros"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/txt_config_dificuldade">
 
         <RadioButton
             android:id="@+id/radioBtn_facil"
@@ -56,21 +56,20 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:paddingEnd="16dp"
-            android:text="Fácil" />
+            android:text="@string/radiobutton_facil" />
 
         <RadioButton
             android:id="@+id/radioBtn_dificil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingEnd="16dp"
-            android:text="Difícil" />
+            android:text="@string/radiobutton_dificil" />
     </RadioGroup>
 
     <Switch
-        android:id="@+id/switch_numerosDistintos2"
+        android:id="@+id/switch_numerosDistintos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:checked="true"
         android:minHeight="48dp"
         android:text="@string/switch_numeros_distintos"
@@ -80,63 +79,83 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup_numeros" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txt_titulo_regras_jogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Regras do Jogo"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_config_regras_jogo"
         android:textColor="@color/indigo_900"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup_dificuldade" />
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txt_config_quantos_numeros"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Quantos números terá a senha?"
+        android:text="@string/txt_config_quantos_numeros"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_configuracoes" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txt_config_dificuldade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Dificuldade"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_config_dificuldade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch_numerosDistintos2" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_numerosDistintos" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_titulo_configuracoes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="Configurações"
+        android:text="@string/txt_configuracoes"
         android:textColor="@color/indigo_900"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txt_regrasJogo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
-        android:text="TextView"
+        android:text="@string/txt_config_regras_jogo_padrao"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_regras_jogo" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/amber_500"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.42" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

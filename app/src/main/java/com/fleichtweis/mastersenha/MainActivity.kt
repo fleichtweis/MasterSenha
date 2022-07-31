@@ -2,8 +2,10 @@ package com.fleichtweis.mastersenha
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -18,22 +20,18 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.core.text.toSpannable
-import org.w3c.dom.Text
 import kotlin.random.Random
 
-enum class Dificuldade{
-    FACIL, //Informa se o número testado está correto e na casa certa. Desativa botões testados que não estão na senha.
-    NORMAL,
-    DIFICIL //Informa quantos números estão corretos e quantos estão na casa certa, mas não informa qual número é.
-}
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     // Variáveis de configurações
     var numeroCasas: Int = 4
-    var numeroTentativas: Int = 6
+    var numeroTentativas: Int = 5
     var numerosDistintos: Boolean = true
-    var dificuldade: Dificuldade = Dificuldade.FACIL
+    var dificuldade: Int = 1
 
     // Variáveis
     var senha: IntArray = IntArray(numeroCasas)
@@ -47,9 +45,6 @@ class MainActivity : AppCompatActivity() {
     // Botões
     lateinit var btnNovoAndTesteJogo: Button
     lateinit var btnReset: ImageButton
-    lateinit var switchNumerosDistintos: Switch
-    lateinit var radioBtn4Numeros: RadioButton
-    lateinit var radioBtn5Numeros: RadioButton
 
     // Botões numéricos
     lateinit var btn0: Button
@@ -100,13 +95,47 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        findIdComponentes()
+
+        btnReset.setOnClickListener {
+
+            if(tentativa != 1) {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Encerrar jogo")
+                    .setMessage("Deseja realmente sair do jogo atual?\nAo encerrar o jogo atual, o sistema contará como desistência, portanto contabilizará como derrota.")
+                    .setPositiveButton("Sim") { _, _ ->
+                        fimJogo()
+                    }
+                    .setNegativeButton("Não") { dialog, _ ->
+                        dialog.cancel()
+                    }
+
+                val dialog: AlertDialog? = builder.create()
+                dialog?.show()
+            } else{
+                //Muda nome e Espera click no botão de novo jogo.
+                btnNovoAndTesteJogo.text = getText(R.string.btn_novo_jogo)
+                jogando = false
+                configuracoesIniciais()
+            }
+        }
+
+
+        //Carrega as configurações salvas
+        sharedPreferences = getSharedPreferences("ConfiguracoesPref", Context.MODE_PRIVATE)
+        carregaConfiguracoes()
+
+        //Função já chama as configurações iniciais
+        componentesQuintoDigito()
+        //configuracoesIniciais()
+
+
+
+    }
+
+    private fun findIdComponentes() {
         btnNovoAndTesteJogo = findViewById(R.id.btn_newAndTestGame)
-
         btnReset = findViewById(R.id.imageBtnReset)
-        radioBtn4Numeros = findViewById(R.id.radioBtn4numeros)
-        radioBtn5Numeros = findViewById(R.id.radioBtn5numeros)
-        switchNumerosDistintos = findViewById(R.id.switch_numerosDistintos)
-
 
         btn0 = findViewById(R.id.btn0)
         btn1 = findViewById(R.id.btn1)
@@ -145,53 +174,18 @@ class MainActivity : AppCompatActivity() {
         txtHistorico8 = findViewById(R.id.txt_historico_8)
         txtHistorico9 = findViewById(R.id.txt_historico_9)
         txtHistorico10 = findViewById(R.id.txt_historico_10)
+    }
 
+    private fun carregaConfiguracoes() {
+        numeroCasas = sharedPreferences.getInt("numeroCasas", 4)
+        numerosDistintos = sharedPreferences.getBoolean("numerosDistintos", true)
+        dificuldade = sharedPreferences.getInt("dificuldade", 1)
+    }
 
-        switchNumerosDistintos.setOnClickListener {
-            numerosDistintos = switchNumerosDistintos.isChecked
-        }
-
-        radioBtn4Numeros.setOnClickListener {
-            numeroCasas = 4
-            componentesQuintoDigito()
-        }
-
-        radioBtn5Numeros.setOnClickListener {
-            numeroCasas = 5
-            componentesQuintoDigito()
-        }
-
-        btnReset.setOnClickListener {
-
-            if(tentativa != 1) {
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Encerrar jogo")
-                    .setMessage("Deseja realmente sair do jogo atual?\nAo encerrar o jogo atual, o sistema contará como desistência, portanto contabilizará como derrota.")
-                    .setPositiveButton("Sim") { _, _ ->
-                        fimJogo()
-                    }
-                    .setNegativeButton("Não") { dialog, _ ->
-                        dialog.cancel()
-                    }
-
-                val dialog: AlertDialog? = builder.create()
-                dialog?.show()
-            } else{
-                //Muda nome e Espera click no botão de novo jogo.
-                btnNovoAndTesteJogo.text = getText(R.string.btn_novo_jogo)
-                jogando = false
-                configuracoesIniciais()
-            }
-        }
-
-
-
-        //Função já chama as configurações iniciais
+    override fun onResume() {
+        carregaConfiguracoes()
         componentesQuintoDigito()
-        //configuracoesIniciais()
-
-
-
+        super.onResume()
     }
 
     //Menu
@@ -209,6 +203,8 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, ConfiguracoesActivity::class.java)
                 startActivity(intent)
                 return true
+            } else{
+                Toast.makeText(this, R.string.toast_aviso_configuracoes, Toast.LENGTH_LONG).show()
             }
         }
         if (id == R.id.menu_informacoes){
@@ -216,6 +212,8 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, InformacoesActivity::class.java)
                 startActivity(intent)
                 return true
+            } else{
+                Toast.makeText(this, R.string.toast_aviso_informacoes, Toast.LENGTH_LONG).show()
             }
         }
 
@@ -653,15 +651,9 @@ class MainActivity : AppCompatActivity() {
         if (jogando){
             btnReset.isEnabled = true
             btnReset.visibility = View.VISIBLE
-            switchNumerosDistintos.isEnabled = false
-            radioBtn4Numeros.isEnabled = false
-            radioBtn5Numeros.isEnabled = false
         } else{
             btnReset.isEnabled = false
             btnReset.visibility = View.INVISIBLE
-            switchNumerosDistintos.isEnabled = true
-            radioBtn4Numeros.isEnabled = true
-            radioBtn5Numeros.isEnabled = true
         }
     }
 

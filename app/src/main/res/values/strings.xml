@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Master Senha</string>
 
+    <!-- Main Activity -->
     <string name="txt_vitoria">VOCÊ GANHOU!!</string>
     <string name="txt_derrota">VOCÊ PERDEU!!</string>
     <string name="txt_clique_novo_jogo">Clique em Novo Jogo</string>
@@ -9,11 +10,6 @@
 
     <string name="btn_novo_jogo">Novo Jogo</string>
     <string name="btn_testar_senha">Testar Senha</string>
-
-    <string name="radiobutton_4numeros">4 Números</string>
-    <string name="radiobutton_5numeros">5 Números</string>
-    <string name="switch_numeros_distintos">Números Distintos</string>
-
 
     <string name="txt_tentativa">Tentativa</string>
     <string name="txt_historico_tentativa">Histórico de tentativas</string>
@@ -29,16 +25,46 @@
     <string name="txt_9">9</string>
     <string name="txt_10">10</string>
 
+    <!-- Mensagens de avisos, erros e auxiliares -->
+    <string name="toast_aviso_configuracoes">Você deve encerrar o jogo atual para alterar as configurações</string>
+    <string name="toast_aviso_informacoes">Você deve encerrar o jogo atual para visualizar as informações</string>
 
     <!-- Textos Content Description -->
     <string name="content_txt_tentativa">Campo com o dígito para tentativa de senha</string>
     <string name="content_btn_reset">Botão para resetar o jogo</string>
-    <string name="content_btn_config">Botão de configurações do jogo</string>
-
 
     <!-- Textos MENU -->
     <string name="menu_configuracoes">Configurações</string>
     <string name="menu_informacoes">Informações</string>
 
+
+
+    <!-- Configurações Activity -->
+    <string name="radiobutton_4numeros">4 Números</string>
+    <string name="radiobutton_5numeros">5 Números</string>
+    <string name="radiobutton_facil">Fácil</string>
+    <string name="radiobutton_dificil">Difícil</string>
+    <string name="switch_numeros_distintos">Números Distintos</string>
+
+    <string name="txt_configuracoes">Configurações</string>
+    <string name="txt_config_quantos_numeros">Quantos números terá a senha?</string>
+    <string name="txt_config_dificuldade">Dificuldade</string>
+
+    <string name="txt_config_regras_jogo">Regras do Jogo</string>
+    <string name="txt_config_regras_jogo_padrao">Tente descobrir a senha secreta.\nA cada novo jogo a senha é alterada, de forma randômica.</string>
+    <string name="txt_config_regras_jogo_facil">Regras do Jogo</string>
+    <string name="txt_config_regras_jogo_dificil">Regras do Jogo</string>
+
+
+
+    <!-- Informações Activity -->
+    <string name="txt_sobre">Sobre</string>
+    <string name="txt_sobre_versao">Versão: 1.1</string>
+    <string name="txt_sobre_informacoes">App baseado no clássico jogo Mastermind.</string>
+    <string name="txt_sobre_desenvolvedor">Desenvolvido por Fernando Leichtweis</string>
+    <string name="btn_sobre_avaliar">Avaliar APP</string>
+    <string name="btn_sobre_feedback">Feedback</string>
+
+    <string name="txt_estatisticas">Estatísticas</string>
 
 </resources>
