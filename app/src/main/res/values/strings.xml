@@ -34,4 +34,11 @@
     <string name="content_txt_tentativa">Campo com o dígito para tentativa de senha</string>
     <string name="content_btn_reset">Botão para resetar o jogo</string>
     <string name="content_btn_config">Botão de configurações do jogo</string>
+
+
+    <!-- Textos MENU -->
+    <string name="menu_configuracoes">Configurações</string>
+    <string name="menu_informacoes">Informações</string>
+
+
 </resources>

@@ -13,6 +13,8 @@ import android.text.Spanned
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.core.text.toSpannable
@@ -44,7 +46,6 @@ class MainActivity : AppCompatActivity() {
     // Componentes da activity
     // Botões
     lateinit var btnNovoAndTesteJogo: Button
-    lateinit var btnConfiguracoes: ImageButton
     lateinit var btnReset: ImageButton
     lateinit var switchNumerosDistintos: Switch
     lateinit var radioBtn4Numeros: RadioButton
@@ -100,12 +101,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnNovoAndTesteJogo = findViewById(R.id.btn_newAndTestGame)
-        btnConfiguracoes = findViewById(R.id.imageBtnConfig)
 
         btnReset = findViewById(R.id.imageBtnReset)
         radioBtn4Numeros = findViewById(R.id.radioBtn4numeros)
         radioBtn5Numeros = findViewById(R.id.radioBtn5numeros)
         switchNumerosDistintos = findViewById(R.id.switch_numerosDistintos)
+
 
         btn0 = findViewById(R.id.btn0)
         btn1 = findViewById(R.id.btn1)
@@ -183,10 +184,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        btnConfiguracoes.setOnClickListener {
-            val intent = Intent(this, ConfiguracoesActivity::class.java)
-            startActivity(intent)
-        }
+
 
         //Função já chama as configurações iniciais
         componentesQuintoDigito()
@@ -196,6 +194,33 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //Menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    //Menu - Itens
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.menu_configuracoes){
+            if (!jogando){
+                val intent = Intent(this, ConfiguracoesActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        if (id == R.id.menu_informacoes){
+            if (!jogando){
+                val intent = Intent(this, InformacoesActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 
     //Clique em um dos textviews da tentativa de senha
     fun textviewTentativa(view: View){
@@ -628,14 +653,12 @@ class MainActivity : AppCompatActivity() {
         if (jogando){
             btnReset.isEnabled = true
             btnReset.visibility = View.VISIBLE
-            btnConfiguracoes.isEnabled = false
             switchNumerosDistintos.isEnabled = false
             radioBtn4Numeros.isEnabled = false
             radioBtn5Numeros.isEnabled = false
         } else{
             btnReset.isEnabled = false
             btnReset.visibility = View.INVISIBLE
-            btnConfiguracoes.isEnabled = true
             switchNumerosDistintos.isEnabled = true
             radioBtn4Numeros.isEnabled = true
             radioBtn5Numeros.isEnabled = true

@@ -253,21 +253,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineInferior" />
 
-    <ImageButton
-        android:id="@+id/imageBtnConfig"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/content_btn_config"
-        android:minHeight="48dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_baseline_settings_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineInferior" />
-
     <RadioGroup
         android:id="@+id/radioGroup_numeros"
         android:layout_width="wrap_content"
