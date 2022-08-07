@@ -22,6 +22,11 @@ import android.widget.*
 import androidx.core.text.toSpannable
 import kotlin.random.Random
 
+/*
+DIFICULDADE
+1 - Fácil
+3 - Difícil
+ */
 
 class MainActivity : AppCompatActivity() {
 
@@ -229,7 +234,6 @@ class MainActivity : AppCompatActivity() {
                 textviewTentativaSelecionado = 1
             }
             R.id.txt_tentativaDig2 -> {
-                //txtTentativaDig2.setBackgroundColor(R.color.marrom)
                 txtTentativaDig2.setBackgroundResource(R.drawable.border_selection)
                 textviewTentativaSelecionado = 2
             }
@@ -331,16 +335,11 @@ class MainActivity : AppCompatActivity() {
                         fimJogo()
                     }
 
-                    //
+                    //Finalizia o jogo caso tenha esgotado o número de tentativas
                     tentativa++
                     if (tentativa > numeroTentativas){
                         fimJogo()
                     }
-
-
-                    //MODO FACIL = Desativa botões que não estão corretos, que já foi testado e não existe o digito na senha.
-
-
 
 
                     if (!jogoFinalizado){
@@ -422,39 +421,119 @@ class MainActivity : AppCompatActivity() {
         tentativaHistoricoFormatado = tentativaHistorico.toSpannable() as SpannableString
 
 
+
+
+        val palpite: IntArray = intArrayOf(n1, n2, n3, n4, n5)
+        for (i in 0 until numeroCasas){
+            if (senha.contains(palpite[i])){
+
+                //Verifica se está na posição correta e
+                //formata string para informar ao usuário sobre o palpite, conforme dificuldade escolhida.
+                when(i){
+                    0 -> {
+                        if (palpite[i] == senha[i]){ //Verifica se está na posição correta.
+                            Log.i("VerificaSenha", "Palpite Certo : ${palpite[i]}")
+                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 12, 13, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 12, 13, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            acertos++
+                        } else { //Senão está na posição errada.
+                            Log.i("VerificaSenha", "Palpite Pertence : ${palpite[i]}")
+                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),12,13,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            //componentesHabilitaBotoesNumericos(palpite[i])
+                        }
+                    }
+                    1 -> {
+                        if (palpite[i] == senha[i]){ //Verifica se está na posição correta.
+                            Log.i("VerificaSenha", "Palpite Certo : ${palpite[i]}")
+                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 16, 17, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 16, 17, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            acertos++
+                        } else { //Senão está na posição errada.
+                            Log.i("VerificaSenha", "Palpite Pertence : ${palpite[i]}")
+                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),16,17,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            //componentesHabilitaBotoesNumericos(palpite[i])
+                        }
+                    }
+                    2 -> {
+                        if (palpite[i] == senha[i]){ //Verifica se está na posição correta.
+                            Log.i("VerificaSenha", "Palpite Certo : ${palpite[i]}")
+                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 20, 21, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 20, 21, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            acertos++
+                        } else { //Senão está na posição errada.
+                            Log.i("VerificaSenha", "Palpite Pertence : ${palpite[i]}")
+                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),20,21,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            //componentesHabilitaBotoesNumericos(palpite[i])
+                        }
+                    }
+                    3 -> {
+                        if (palpite[i] == senha[i]){ //Verifica se está na posição correta.
+                            Log.i("VerificaSenha", "Palpite Certo : ${palpite[i]}")
+                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 24, 25, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 24, 25, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            acertos++
+                        } else { //Senão está na posição errada.
+                            Log.i("VerificaSenha", "Palpite Pertence : ${palpite[i]}")
+                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),24,25,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            //componentesHabilitaBotoesNumericos(palpite[i])
+                        }
+                    }
+                    4 -> {
+                        if (palpite[i] == senha[i]){ //Verifica se está na posição correta.
+                            Log.i("VerificaSenha", "Palpite Certo : ${palpite[i]}")
+                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 28, 29, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 28, 29, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            acertos++
+                        } else { //Senão está na posição errada.
+                            Log.i("VerificaSenha", "Palpite Pertence : ${palpite[i]}")
+                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),28,29,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            //componentesHabilitaBotoesNumericos(palpite[i])
+                        }
+                    }
+                }
+            } else{ //Palpite não pertence a senha
+                if (dificuldade == 1){ //Fácil - Desabilita botão numérico
+                    componentesDesabilitaBotoesNumericos(palpite[i])
+                }
+            }
+        }
+
+
+
         //Desativa botões numéricos correspondentes ao palpite da senha.
         //Caso o número esteja na senha correta, o botão é ativado novamente.
         //Caso o número não esteja, o botão segue desativado.
-        componentesDesabilitaBotoesNumericos(n1)
+        /*componentesDesabilitaBotoesNumericos(n1)
         componentesDesabilitaBotoesNumericos(n2)
         componentesDesabilitaBotoesNumericos(n3)
         componentesDesabilitaBotoesNumericos(n4)
-        if(numeroCasas == 5) componentesDesabilitaBotoesNumericos(n5)
+        if(numeroCasas == 5) componentesDesabilitaBotoesNumericos(n5)*/
 
-        for (i in 0 until numeroCasas){
+
+        /*for (i in 0 until numeroCasas){
             //Verifica se possui número na senha, em qualquer posição.
             if(senha[i] == n1 || senha[i] == n2 || senha[i] == n3 || senha[i] == n4 || senha[i] == n5){
                 Log.i("TESTE_SENHA", "Posição Errada - Número igual : ${senha[i]}")
 
                 //Formata o número correspondente para informar que está na senha, mas na posição incorreta.
                 if (senha[i] == n1) {
-                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(Color.YELLOW), 12, 13, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.purple_200)), 12, 13, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
                     componentesHabilitaBotoesNumericos(n1)
                 }
                 if (senha[i] == n2) {
-                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(Color.YELLOW), 16, 17, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.purple_200)), 16, 17, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
                     componentesHabilitaBotoesNumericos(n2)
                 }
                 if (senha[i] == n3) {
-                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(Color.YELLOW), 20, 21, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.purple_200)), 20, 21, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
                     componentesHabilitaBotoesNumericos(n3)
                 }
                 if (senha[i] == n4) {
-                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(Color.YELLOW), 24, 25, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.purple_200)), 24, 25, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
                     componentesHabilitaBotoesNumericos(n4)
                 }
                 if (senha[i] == n5) {
-                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(Color.YELLOW), 28, 29, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.purple_200)), 28, 29, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
                     componentesHabilitaBotoesNumericos(n5)
                 }
 
@@ -491,7 +570,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
-        }
+        }*/
 
         when(tentativa){
             1 -> txtHistorico1.text = tentativaHistoricoFormatado
@@ -504,7 +583,7 @@ class MainActivity : AppCompatActivity() {
             8 -> txtHistorico8.text = tentativaHistoricoFormatado
             9 -> txtHistorico9.text = tentativaHistoricoFormatado
             10 -> txtHistorico10.text = tentativaHistoricoFormatado
-            else -> txtInfo.text = "Não conseguimos informar o palpite formatado"
+            else -> txtInfo.text = getString(R.string.msg_tentativa_texto_formatado)
         }
 
         return acertos
@@ -559,7 +638,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun gerarSenha(){
-        if(numerosDistintos){
+        var numero: Int
+        var numeroAceito: Boolean = false
+
+        if (numerosDistintos){
+            for (i in 0 until numeroCasas){
+                numeroAceito = false
+                do {
+                    numero = proximoNumero()
+                    if (!senha.contains(numero)) {
+                        senha[i] = numero
+                        numeroAceito = true
+                    }
+                } while (!numeroAceito)
+            }
+        } else{
+            for (i in 0 until numeroCasas){
+                senha[i] = proximoNumero()
+            }
+        }
+
+
+
+/*        if(numerosDistintos){
             for (i in 0 until numeroCasas){
                 when(i){
                     0 -> senha[i] = proximoNumero()
@@ -581,7 +682,7 @@ class MainActivity : AppCompatActivity() {
             for (i in 0 until numeroCasas){
                 senha[i] = proximoNumero()
             }
-        }
+        }*/
 
         //Deixar a senha escondida
         esconderSenha()
@@ -667,17 +768,17 @@ class MainActivity : AppCompatActivity() {
 
     fun componentesMudaTextoNumeroTentativa() {
         when(tentativa){
-            1 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_1)}"
-            2 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_2)}"
-            3 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_3)}"
-            4 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_4)}"
-            5 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_5)}"
-            6 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_6)}"
-            7 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_7)}"
-            8 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_8)}"
-            9 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_9)}"
-            10 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_10)}"
-            else -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_0)}"
+            1 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_1)} de $numeroTentativas"
+            2 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_2)} de $numeroTentativas"
+            3 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_3)} de $numeroTentativas"
+            4 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_4)} de $numeroTentativas"
+            5 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_5)} de $numeroTentativas"
+            6 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_6)} de $numeroTentativas"
+            7 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_7)} de $numeroTentativas"
+            8 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_8)} de $numeroTentativas"
+            9 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_9)} de $numeroTentativas"
+            10 -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_10)} de $numeroTentativas"
+            else -> txtTentativas.text = "${getText(R.string.txt_tentativa)} ${getText(R.string.txt_0)} de $numeroTentativas"
         }
     }
 

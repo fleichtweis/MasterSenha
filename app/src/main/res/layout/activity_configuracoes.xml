@@ -6,6 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".ConfiguracoesActivity">
 
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="96dp"
+        android:background="@color/amber_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_regrasJogo" />
+
+    <TextView
+        android:id="@+id/txt_exemplosJogo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="4dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_regrasJogo" />
+
+    <TextView
+        android:id="@+id/txt_objetivoJogo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:padding="4dp"
+        android:text="@string/txt_config_objetivo_jogo"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_regras_jogo" />
+
     <RadioGroup
         android:id="@+id/radioGroup_numeros"
         android:layout_width="wrap_content"
@@ -94,7 +139,7 @@
         android:id="@+id/txt_config_quantos_numeros"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/txt_config_quantos_numeros"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,17 +171,17 @@
     <TextView
         android:id="@+id/txt_regrasJogo"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:padding="4dp"
         android:text="@string/txt_config_regras_jogo_padrao"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_regras_jogo" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_objetivoJogo" />
 
     <View
         android:id="@+id/divider"
@@ -156,6 +201,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.42" />
+        app:layout_constraintGuide_percent="0.40" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

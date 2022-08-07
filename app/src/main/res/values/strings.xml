@@ -28,6 +28,7 @@
     <!-- Mensagens de avisos, erros e auxiliares -->
     <string name="toast_aviso_configuracoes">Você deve encerrar o jogo atual para alterar as configurações</string>
     <string name="toast_aviso_informacoes">Você deve encerrar o jogo atual para visualizar as informações</string>
+    <string name="msg_tentativa_texto_formatado">Não conseguimos informar o palpite formatado</string>
 
     <!-- Textos Content Description -->
     <string name="content_txt_tentativa">Campo com o dígito para tentativa de senha</string>
@@ -51,9 +52,26 @@
     <string name="txt_config_dificuldade">Dificuldade</string>
 
     <string name="txt_config_regras_jogo">Regras do Jogo</string>
-    <string name="txt_config_regras_jogo_padrao">Tente descobrir a senha secreta.\nA cada novo jogo a senha é alterada, de forma randômica.</string>
-    <string name="txt_config_regras_jogo_facil">Regras do Jogo</string>
-    <string name="txt_config_regras_jogo_dificil">Regras do Jogo</string>
+    <string name="txt_config_objetivo_jogo">OBJETIVO - Descobrir a senha secreta.</string>
+    <string name="txt_config_regras_jogo_padrao">
+        A senha é uma sequência de 4 ou 5 números, distintos ou não.\n
+        A cada novo jogo a senha é alterada, de forma randômica.\n
+        Após cada palpite, você receberá dicas para te auxiliar. A dica muda conforme a dificuldade escolhida.\n\n
+        Boa sorte e divirta-se!</string>
+    <string name="txt_config_regras_jogo_facil">
+        Exemplo da dica para nível fácil\n\n
+        Tentativa 1\n
+        7 - 2 - 1 - 6\n\n
+        2 -> Número correto, mas posição errada.\n
+        6 -> Número e posição corretos.
+    </string>
+    <string name="txt_config_regras_jogo_dificil">
+        Exemplo da dica para nível difícil\n\n
+        Tentativa 1\n
+        7 - 2 - 1 - 6 --- 2 | 1\n\n
+        2 -> Possui 2 números corretos na posição correta.\n
+        1 -> Possui 1 números corretos na posição errada.\n
+    </string>
 
 
 
