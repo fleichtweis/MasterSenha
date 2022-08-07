@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     // Variáveis de configurações
     var numeroCasas: Int = 4
-    var numeroTentativas: Int = 5
+    var numeroTentativas: Int = 5 //Conforme dificuldade escolhida o número varia.
     var numerosDistintos: Boolean = true
     var dificuldade: Int = 1
 
@@ -106,12 +106,12 @@ class MainActivity : AppCompatActivity() {
 
             if(tentativa != 1) {
                 val builder = AlertDialog.Builder(this)
-                builder.setTitle("Encerrar jogo")
-                    .setMessage("Deseja realmente sair do jogo atual?\nAo encerrar o jogo atual, o sistema contará como desistência, portanto contabilizará como derrota.")
-                    .setPositiveButton("Sim") { _, _ ->
+                builder.setTitle(R.string.dialog_titulo_encerrar_jogo)
+                    .setMessage(R.string.dialog_mensagem_encerrar_jogo)
+                    .setPositiveButton(R.string.dialog_sim) { _, _ ->
                         fimJogo()
                     }
-                    .setNegativeButton("Não") { dialog, _ ->
+                    .setNegativeButton(R.string.dialog_nao) { dialog, _ ->
                         dialog.cancel()
                     }
 
@@ -185,12 +185,38 @@ class MainActivity : AppCompatActivity() {
         numeroCasas = sharedPreferences.getInt("numeroCasas", 4)
         numerosDistintos = sharedPreferences.getBoolean("numerosDistintos", true)
         dificuldade = sharedPreferences.getInt("dificuldade", 1)
+
+        when(dificuldade){
+            1 -> numeroTentativas = 5
+            3 -> numeroTentativas = 10
+            else -> numeroTentativas = 10
+        }
     }
 
     override fun onResume() {
         carregaConfiguracoes()
         componentesQuintoDigito()
         super.onResume()
+    }
+
+    //Ação do botão voltar do Android pressionado.
+    override fun onBackPressed() {
+        if(tentativa != 1) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.dialog_titulo_encerrar_jogo)
+                .setMessage(R.string.dialog_mensagem_encerrar_jogo)
+                .setPositiveButton(R.string.dialog_sim) { _, _ ->
+                    fimJogo()
+                    finish()
+                }
+                .setNegativeButton(R.string.dialog_nao) { dialog, _ ->
+                    dialog.cancel()
+                }
+
+            val dialog: AlertDialog? = builder.create()
+            dialog?.show()
+        }
+        super.onBackPressed()
     }
 
     //Menu
@@ -311,7 +337,7 @@ class MainActivity : AppCompatActivity() {
     fun btnNewAndTestGame(view: View){
         if (jogando){
             if (tentativa <= numeroTentativas){
-                txtInfo.text = getText(R.string.txt_frase_efeito1)
+                modificaTextoInformacao()
                 
                 //Verifica se possui todos os números para teste, se não não realiza o teste.
                 if(possuiTodosDigitosTentativa()){
@@ -391,7 +417,7 @@ class MainActivity : AppCompatActivity() {
         componentesHabilitaBotoesNumericos()
 
         //Troca texto de informações
-        txtInfo.text = getText(R.string.txt_frase_efeito1)
+        modificaTextoInformacao()
 
         //Foco no primeiro digito, textview tentativa
         //textviewTentativa(txtTentativaDig1)
@@ -406,11 +432,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun modificaTextoInformacao() {
+        when(tentativa){
+            1, 2 -> txtInfo.text = getText(R.string.txt_frase_efeito1)
+            3, 4 -> txtInfo.text = getText(R.string.txt_frase_efeito2)
+            5 -> if (dificuldade == 1) txtInfo.text = getText(R.string.txt_frase_efeito4)
+            6, 7, 8 -> txtInfo.text = getText(R.string.txt_frase_efeito3)
+            9 -> txtInfo.text = getText(R.string.txt_frase_efeito2)
+            10 -> txtInfo.text = getText(R.string.txt_frase_efeito4)
+            else -> txtInfo.text = getText(R.string.txt_frase_efeito1)
+        }
+    }
+
     //FAZER FUNCIONAR PAR 5 CASAS
     fun conferirSenha(n1: Int, n2: Int, n3: Int, n4: Int, n5:Int = -1): Int{
         var acertos: Int = 0
-        val tentativaHistorico: String
-        val tentativaHistoricoFormatado: SpannableString
+        var quantidadePalpitePertence: Int = 0 //Auxilia para informar no modo difícil
+        var tentativaHistorico: String
+        var tentativaHistoricoFormatado: SpannableString
 
         //Texto tentativa para receber formatação de acerto
         if (numeroCasas == 4) {
@@ -433,61 +472,81 @@ class MainActivity : AppCompatActivity() {
                     0 -> {
                         if (palpite[i] == senha[i]){ //Verifica se está na posição correta.
                             Log.i("VerificaSenha", "Palpite Certo : ${palpite[i]}")
-                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 12, 13, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                            tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 12, 13, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
                             acertos++
+                            if (dificuldade == 1){
+                                tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 12, 13, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                                tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 12, 13, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            }
                         } else { //Senão está na posição errada.
                             Log.i("VerificaSenha", "Palpite Pertence : ${palpite[i]}")
-                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),12,13,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                            //componentesHabilitaBotoesNumericos(palpite[i])
+                            quantidadePalpitePertence++
+                            if (dificuldade == 1){
+                                tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),12,13,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            }
                         }
                     }
                     1 -> {
                         if (palpite[i] == senha[i]){ //Verifica se está na posição correta.
                             Log.i("VerificaSenha", "Palpite Certo : ${palpite[i]}")
-                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 16, 17, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                            tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 16, 17, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
                             acertos++
+                            if (dificuldade == 1){
+                                tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 16, 17, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                                tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 16, 17, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            }
                         } else { //Senão está na posição errada.
                             Log.i("VerificaSenha", "Palpite Pertence : ${palpite[i]}")
-                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),16,17,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                            //componentesHabilitaBotoesNumericos(palpite[i])
+                            quantidadePalpitePertence++
+                            if (dificuldade == 1){
+                                tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),16,17,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            }
                         }
                     }
                     2 -> {
                         if (palpite[i] == senha[i]){ //Verifica se está na posição correta.
                             Log.i("VerificaSenha", "Palpite Certo : ${palpite[i]}")
-                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 20, 21, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                            tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 20, 21, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
                             acertos++
+                            if (dificuldade == 1){
+                                tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 20, 21, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                                tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 20, 21, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            }
                         } else { //Senão está na posição errada.
                             Log.i("VerificaSenha", "Palpite Pertence : ${palpite[i]}")
-                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),20,21,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                            //componentesHabilitaBotoesNumericos(palpite[i])
+                            quantidadePalpitePertence++
+                            if (dificuldade == 1){
+                                tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),20,21,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            }
                         }
                     }
                     3 -> {
                         if (palpite[i] == senha[i]){ //Verifica se está na posição correta.
                             Log.i("VerificaSenha", "Palpite Certo : ${palpite[i]}")
-                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 24, 25, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                            tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 24, 25, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
                             acertos++
+                            if (dificuldade == 1){
+                                tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 24, 25, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                                tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 24, 25, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            }
                         } else { //Senão está na posição errada.
                             Log.i("VerificaSenha", "Palpite Pertence : ${palpite[i]}")
-                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),24,25,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                            //componentesHabilitaBotoesNumericos(palpite[i])
+                            quantidadePalpitePertence++
+                            if (dificuldade == 1){
+                                tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),24,25,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            }
                         }
                     }
                     4 -> {
                         if (palpite[i] == senha[i]){ //Verifica se está na posição correta.
                             Log.i("VerificaSenha", "Palpite Certo : ${palpite[i]}")
-                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 28, 29, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                            tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 28, 29, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
                             acertos++
+                            if (dificuldade == 1){
+                                tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 28, 29, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                                tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 28, 29, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            }
                         } else { //Senão está na posição errada.
                             Log.i("VerificaSenha", "Palpite Pertence : ${palpite[i]}")
-                            tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),28,29,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-                            //componentesHabilitaBotoesNumericos(palpite[i])
+                            quantidadePalpitePertence++
+                            if (dificuldade == 1){
+                                tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),28,29,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                            }
                         }
                     }
                 }
@@ -572,6 +631,41 @@ class MainActivity : AppCompatActivity() {
             }
         }*/
 
+        //Termina formatação do histórico da tentativa para modo difícil
+        if (dificuldade == 3) {
+            tentativaHistorico += " --- $acertos | $quantidadePalpitePertence"
+            tentativaHistoricoFormatado = tentativaHistorico.toSpannable() as SpannableString
+            if (numeroCasas == 4){
+                if (tentativa < 10){
+                    //Números e posição corretos.
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 30, 31, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 30, 31, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    //Números corretos, mas posição errada.
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),34,35,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                } else{
+                    //Números e posição corretos.
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 31, 32, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 31, 32, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    //Números corretos, mas posição errada.
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),35,36,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                }
+            } else { //5 Casas
+                if (tentativa < 10){
+                    //Números e posição corretos.
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 34, 35, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 34, 35, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    //Números corretos, mas posição errada.
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),38,39,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                } else{
+                    //Números e posição corretos.
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 35, 36, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    tentativaHistoricoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 35, 36, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                    //Números corretos, mas posição errada.
+                    tentativaHistoricoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)),39,40,Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+                }
+            }
+        }
+
         when(tentativa){
             1 -> txtHistorico1.text = tentativaHistoricoFormatado
             2 -> txtHistorico2.text = tentativaHistoricoFormatado
@@ -614,6 +708,9 @@ class MainActivity : AppCompatActivity() {
     fun fimJogo(){
         jogoFinalizado = true
         //informa se ganhou ou perdeu.
+        txtInfo.setTypeface(null, Typeface.BOLD)
+        txtInfo.setTextColor(getColor(R.color.indigo_900))
+        txtInfo.setBackgroundColor(getColor(R.color.amber_500))
         if (vitoria){
             txtInfo.text = getText(R.string.txt_vitoria)
         } else {

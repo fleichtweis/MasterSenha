@@ -7,6 +7,9 @@
     <string name="txt_clique_novo_jogo">Clique em Novo Jogo</string>
     <string name="txt_infomar_todos_digitos_teste">Você precisa informar todos os números para realizar o teste da senha</string>
     <string name="txt_frase_efeito1">Tente descobrir a senha secreta.</string>
+    <string name="txt_frase_efeito2">Não desista, você consegue. Força!</string>
+    <string name="txt_frase_efeito3">Você está mais perto do que imagina!</string>
+    <string name="txt_frase_efeito4">Última tentativa, pense bem.</string>
 
     <string name="btn_novo_jogo">Novo Jogo</string>
     <string name="btn_testar_senha">Testar Senha</string>
@@ -29,6 +32,13 @@
     <string name="toast_aviso_configuracoes">Você deve encerrar o jogo atual para alterar as configurações</string>
     <string name="toast_aviso_informacoes">Você deve encerrar o jogo atual para visualizar as informações</string>
     <string name="msg_tentativa_texto_formatado">Não conseguimos informar o palpite formatado</string>
+    <string name="dialog_titulo_encerrar_jogo">Encerrar jogo</string>
+    <string name="dialog_mensagem_encerrar_jogo">
+        Deseja realmente sair do jogo atual?\n
+        Ao encerrar o jogo atual, o sistema contará como desistência, portanto contabilizará como derrota.
+    </string>
+    <string name="dialog_sim">Sim</string>
+    <string name="dialog_nao">Não</string>
 
     <!-- Textos Content Description -->
     <string name="content_txt_tentativa">Campo com o dígito para tentativa de senha</string>
@@ -77,7 +87,7 @@
 
     <!-- Informações Activity -->
     <string name="txt_sobre">Sobre</string>
-    <string name="txt_sobre_versao">Versão: 1.1</string>
+    <string name="txt_sobre_versao">Versão: 1.0</string>
     <string name="txt_sobre_informacoes">App baseado no clássico jogo Mastermind.</string>
     <string name="txt_sobre_desenvolvedor">Desenvolvido por Fernando Leichtweis</string>
     <string name="btn_sobre_avaliar">Avaliar APP</string>
