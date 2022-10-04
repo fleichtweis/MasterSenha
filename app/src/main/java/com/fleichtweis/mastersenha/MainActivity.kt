@@ -1,13 +1,9 @@
 package com.fleichtweis.mastersenha
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
-import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
@@ -34,9 +30,10 @@ class MainActivity : AppCompatActivity() {
 
     // Variáveis de configurações
     var numeroCasas: Int = 4
-    var numeroTentativas: Int = 5 //Conforme dificuldade escolhida o número varia.
+    var numeroTentativas: Int = 5 //Conforme dificuldade escolhida o número varia. (Fácil = 5; Díficil = 10)
     var numerosDistintos: Boolean = true
     var dificuldade: Int = 1
+    var exibeTutorial: Boolean = true
 
     // Variáveis
     var senha: IntArray = IntArray(numeroCasas)
@@ -104,7 +101,7 @@ class MainActivity : AppCompatActivity() {
 
         btnReset.setOnClickListener {
 
-            if(tentativa != 1) {
+            if(jogando && tentativa != 1) {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle(R.string.dialog_titulo_encerrar_jogo)
                     .setMessage(R.string.dialog_mensagem_encerrar_jogo)
@@ -127,7 +124,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //Carrega as configurações salvas
-        sharedPreferences = getSharedPreferences("ConfiguracoesPref", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences(getString(R.string.pref_config), Context.MODE_PRIVATE)
         carregaConfiguracoes()
 
         //Função já chama as configurações iniciais
@@ -182,14 +179,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun carregaConfiguracoes() {
-        numeroCasas = sharedPreferences.getInt("numeroCasas", 4)
-        numerosDistintos = sharedPreferences.getBoolean("numerosDistintos", true)
-        dificuldade = sharedPreferences.getInt("dificuldade", 1)
+        numeroCasas = sharedPreferences.getInt(getString(R.string.pref_config_numero_casas), 4)
+        numerosDistintos = sharedPreferences.getBoolean(getString(R.string.pref_config_numeros_distintos), true)
+        dificuldade = sharedPreferences.getInt(getString(R.string.pref_config_dificuldade), 1)
+        exibeTutorial = sharedPreferences.getBoolean(getString(R.string.pref_config_tutorial), true)
 
         when(dificuldade){
             1 -> numeroTentativas = 5
             3 -> numeroTentativas = 10
             else -> numeroTentativas = 10
+        }
+
+        if (exibeTutorial){
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.txt_config_regras_jogo)
+                .setMessage(R.string.txt_config_regras_jogo_dificil)
+                .setPositiveButton(R.string.dialog_sim) { dialog, _ ->
+                    dialog.cancel()
+                }
+                .setNegativeButton(R.string.dialog_nao) { dialog, _ ->
+                    dialog.cancel()
+                }
+
+            val dialog: AlertDialog? = builder.create()
+            dialog?.show()
         }
     }
 
@@ -201,7 +214,7 @@ class MainActivity : AppCompatActivity() {
 
     //Ação do botão voltar do Android pressionado.
     override fun onBackPressed() {
-        if(tentativa != 1) {
+        if(jogando && tentativa != 1) {
             val builder = AlertDialog.Builder(this)
             builder.setTitle(R.string.dialog_titulo_encerrar_jogo)
                 .setMessage(R.string.dialog_mensagem_encerrar_jogo)
@@ -215,8 +228,9 @@ class MainActivity : AppCompatActivity() {
 
             val dialog: AlertDialog? = builder.create()
             dialog?.show()
+        }else {
+            super.onBackPressed()
         }
-        super.onBackPressed()
     }
 
     //Menu
@@ -435,11 +449,11 @@ class MainActivity : AppCompatActivity() {
     private fun modificaTextoInformacao() {
         when(tentativa){
             1, 2 -> txtInfo.text = getText(R.string.txt_frase_efeito1)
-            3, 4 -> txtInfo.text = getText(R.string.txt_frase_efeito2)
-            5 -> if (dificuldade == 1) txtInfo.text = getText(R.string.txt_frase_efeito4)
-            6, 7, 8 -> txtInfo.text = getText(R.string.txt_frase_efeito3)
-            9 -> txtInfo.text = getText(R.string.txt_frase_efeito2)
-            10 -> txtInfo.text = getText(R.string.txt_frase_efeito4)
+            3 -> txtInfo.text = getText(R.string.txt_frase_efeito2)
+            4 -> if (dificuldade == 1) txtInfo.text = getText(R.string.txt_frase_efeito4)
+            5, 6 -> txtInfo.text = getText(R.string.txt_frase_efeito3)
+            7, 8 -> txtInfo.text = getText(R.string.txt_frase_efeito2)
+            9 -> txtInfo.text = getText(R.string.txt_frase_efeito4)
             else -> txtInfo.text = getText(R.string.txt_frase_efeito1)
         }
     }
@@ -708,9 +722,9 @@ class MainActivity : AppCompatActivity() {
     fun fimJogo(){
         jogoFinalizado = true
         //informa se ganhou ou perdeu.
-        txtInfo.setTypeface(null, Typeface.BOLD)
-        txtInfo.setTextColor(getColor(R.color.indigo_900))
-        txtInfo.setBackgroundColor(getColor(R.color.amber_500))
+        //txtInfo.setTypeface(null, Typeface.BOLD)
+        //txtInfo.setTextColor(getColor(R.color.indigo_900))
+        //txtInfo.setBackgroundColor(getColor(R.color.amber_500))
         if (vitoria){
             txtInfo.text = getText(R.string.txt_vitoria)
         } else {

@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">Master Senha</string>
 
+
+    <!-- Textos Preferências (SharedPreference) -->
+    <string name="pref_config">PREF_CONFIGURACAO</string>
+    <string name="pref_config_numero_casas">numeroCasas</string>
+    <string name="pref_config_numeros_distintos">numerosDistintos</string>
+    <string name="pref_config_dificuldade">dificuldade</string>
+    <string name="pref_config_tutorial">tutorial</string>
+
+
     <!-- Main Activity -->
     <string name="txt_vitoria">VOCÊ GANHOU!!</string>
     <string name="txt_derrota">VOCÊ PERDEU!!</string>
@@ -78,7 +87,7 @@
     <string name="txt_config_regras_jogo_dificil">
         Exemplo da dica para nível difícil\n\n
         Tentativa 1\n
-        7 - 2 - 1 - 6 --- 2 | 1\n\n
+        7 - 3 - 9 - 6 --- 2 | 1\n\n
         2 -> Possui 2 números corretos na posição correta.\n
         1 -> Possui 1 números corretos na posição errada.\n
     </string>

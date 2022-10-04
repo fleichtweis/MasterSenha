@@ -48,7 +48,7 @@ class ConfiguracoesActivity : AppCompatActivity() {
         textExemploDicaJogo = findViewById(R.id.txt_exemplosJogo)
 
 
-        sharedPreferences = getSharedPreferences("ConfiguracoesPref", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences(getString(R.string.pref_config), Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
 
@@ -57,28 +57,28 @@ class ConfiguracoesActivity : AppCompatActivity() {
 
 
         radioBtn4Numeros.setOnClickListener {
-            editor.putInt("numeroCasas", 4)
+            editor.putInt(getString(R.string.pref_config_numero_casas), 4)
             editor.apply()
         }
 
         radioBtn5Numeros.setOnClickListener {
-            editor.putInt("numeroCasas", 5)
+            editor.putInt(getString(R.string.pref_config_numero_casas), 5)
             editor.apply()
         }
 
         switchNumerosDistintos.setOnClickListener {
-            editor.putBoolean("numerosDistintos", switchNumerosDistintos.isChecked)
+            editor.putBoolean(getString(R.string.pref_config_numeros_distintos), switchNumerosDistintos.isChecked)
             editor.apply()
         }
 
         radioBtnDificuldadeFacil.setOnClickListener {
-            editor.putInt("dificuldade", 1)
+            editor.putInt(getString(R.string.pref_config_dificuldade), 1)
             editor.apply()
             formataTextoExemploDica()
         }
 
         radioBtnDificuldadeDificil.setOnClickListener {
-            editor.putInt("dificuldade", 3)
+            editor.putInt(getString(R.string.pref_config_dificuldade), 3)
             editor.apply()
             formataTextoExemploDica()
         }
@@ -87,9 +87,9 @@ class ConfiguracoesActivity : AppCompatActivity() {
 
     private fun inicializaComponentes() {
         //Carrega informações salvas sobre as configurações
-        val numeroCasas = sharedPreferences.getInt("numeroCasas", 4)
-        val numerosDistintos = sharedPreferences.getBoolean("numerosDistintos", true)
-        val dificuldade = sharedPreferences.getInt("dificuldade", 1)
+        val numeroCasas = sharedPreferences.getInt(getString(R.string.pref_config_numero_casas), 4)
+        val numerosDistintos = sharedPreferences.getBoolean(getString(R.string.pref_config_numeros_distintos), true)
+        val dificuldade = sharedPreferences.getInt(getString(R.string.pref_config_dificuldade), 1)
 
         //Inicializa Componentes conforme preferências salvas
         if (numeroCasas == 4) {
