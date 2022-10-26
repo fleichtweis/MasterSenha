@@ -7,7 +7,7 @@
     <string name="pref_config_numero_casas">numeroCasas</string>
     <string name="pref_config_numeros_distintos">numerosDistintos</string>
     <string name="pref_config_dificuldade">dificuldade</string>
-    <string name="pref_config_tutorial">tutorial</string>
+    <string name="pref_config_exibe_regras_jogo">exibeRegrasJogo</string>
 
 
     <!-- Main Activity -->
@@ -48,6 +48,9 @@
     </string>
     <string name="dialog_sim">Sim</string>
     <string name="dialog_nao">Não</string>
+    <string name="dialog_fechar">Fechar</string>
+    <string name="dialog_nao_mostrar_novamente">Não mostrar novamente</string>
+    <string name="dialog_dificuldade_atual">Dificuldade atual:</string>
 
     <!-- Textos Content Description -->
     <string name="content_txt_tentativa">Campo com o dígito para tentativa de senha</string>
@@ -56,6 +59,7 @@
     <!-- Textos MENU -->
     <string name="menu_configuracoes">Configurações</string>
     <string name="menu_informacoes">Informações</string>
+    <string name="menu_ajuda">Ajuda</string>
 
 
 

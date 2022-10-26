@@ -4,12 +4,14 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -27,13 +29,14 @@ DIFICULDADE
 class MainActivity : AppCompatActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
     // Variáveis de configurações
     var numeroCasas: Int = 4
     var numeroTentativas: Int = 5 //Conforme dificuldade escolhida o número varia. (Fácil = 5; Díficil = 10)
     var numerosDistintos: Boolean = true
     var dificuldade: Int = 1
-    var exibeTutorial: Boolean = true
+    var exibeRegrasJogo: Boolean = true
 
     // Variáveis
     var senha: IntArray = IntArray(numeroCasas)
@@ -131,6 +134,9 @@ class MainActivity : AppCompatActivity() {
         componentesQuintoDigito()
         //configuracoesIniciais()
 
+        if (exibeRegrasJogo){
+            exibirRegrasJogo(false)
+        }
 
 
     }
@@ -182,7 +188,7 @@ class MainActivity : AppCompatActivity() {
         numeroCasas = sharedPreferences.getInt(getString(R.string.pref_config_numero_casas), 4)
         numerosDistintos = sharedPreferences.getBoolean(getString(R.string.pref_config_numeros_distintos), true)
         dificuldade = sharedPreferences.getInt(getString(R.string.pref_config_dificuldade), 1)
-        exibeTutorial = sharedPreferences.getBoolean(getString(R.string.pref_config_tutorial), true)
+        exibeRegrasJogo = sharedPreferences.getBoolean(getString(R.string.pref_config_exibe_regras_jogo), true)
 
         when(dificuldade){
             1 -> numeroTentativas = 5
@@ -190,20 +196,7 @@ class MainActivity : AppCompatActivity() {
             else -> numeroTentativas = 10
         }
 
-        if (exibeTutorial){
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle(R.string.txt_config_regras_jogo)
-                .setMessage(R.string.txt_config_regras_jogo_dificil)
-                .setPositiveButton(R.string.dialog_sim) { dialog, _ ->
-                    dialog.cancel()
-                }
-                .setNegativeButton(R.string.dialog_nao) { dialog, _ ->
-                    dialog.cancel()
-                }
 
-            val dialog: AlertDialog? = builder.create()
-            dialog?.show()
-        }
     }
 
     override fun onResume() {
@@ -260,6 +253,16 @@ class MainActivity : AppCompatActivity() {
             } else{
                 Toast.makeText(this, R.string.toast_aviso_informacoes, Toast.LENGTH_LONG).show()
             }
+        }
+        if (id == R.id.menu_ajuda){
+            exibirRegrasJogo(true)
+            return true
+            /*if (!jogando){
+                exibirRegrasJogo(true)
+                return true
+            } else{
+                Toast.makeText(this, R.string.toast_aviso_informacoes, Toast.LENGTH_LONG).show()
+            }*/
         }
 
         return super.onOptionsItemSelected(item)
@@ -817,6 +820,88 @@ class MainActivity : AppCompatActivity() {
         if(numeroCasas == 5){
             txtSenhaDig5.setText(senha[4].toString())
         }
+    }
+
+    private fun exibirRegrasJogo(cliqueNoBotao: Boolean) {
+        try {
+            val builder = AlertDialog.Builder(this)
+                .setView(R.layout.dialog_regras_jogo)
+
+
+            val dialog: AlertDialog? = builder.create()
+            dialog?.show()
+
+            val dialogCheckNaoMostrarNovamente = dialog?.findViewById<CheckBox>(R.id.checkBox_dialog_mostrar_novamente)
+            val dialogTxtExemploJogo = dialog?.findViewById<TextView>(R.id.txt_dialog_exemplos_jogo)
+            val dialogTxtDificuldadeAtual = dialog?.findViewById<TextView>(R.id.txt_dialog_dificuldade_resultado)
+            val dialogBtnFechar = dialog?.findViewById<Button>(R.id.btn_dialog_fechar)
+
+            // Se exibiu o dialog através do clique do botão "Ajuda", esconde o checkbox "Não mostrar novamente".
+            // Se exibiu o dialog após iniciar o app, mostra o checkbox "Não mostrar novamente".
+            // Caso o usuário tenha marcado o checkbox anteriormente, após iniciar o app, o dialog não será exibido.
+            //      Só será possível exibir o dialog através do botão "Ajuda"
+            if (cliqueNoBotao){
+                dialogCheckNaoMostrarNovamente?.visibility = View.GONE
+            } else{
+                dialogCheckNaoMostrarNovamente?.visibility = View.VISIBLE
+            }
+
+            //Informa qual dificuldade está selecionada nas configurações
+            when(dificuldade){
+                1 -> dialogTxtDificuldadeAtual?.text = getText(R.string.radiobutton_facil)
+                3 -> dialogTxtDificuldadeAtual?.text = getText(R.string.radiobutton_dificil)
+                else -> dialogTxtDificuldadeAtual?.text = " ---- "
+            }
+
+            // Auxiliar para formatação do texto a ser mostrado.
+            /*val textoFormatado: SpannableString
+            textoFormatado = formataTextoExemploJogo()
+            dialogTxtExemploJogo?.text = textoFormatado*/
+            dialogTxtExemploJogo?.text = formataTextoExemploJogo()
+
+            dialogBtnFechar?.setOnClickListener {
+                if (dialogCheckNaoMostrarNovamente?.isChecked == true){
+                    editor = sharedPreferences.edit()
+                    editor.putBoolean(getString(R.string.pref_config_exibe_regras_jogo), false)
+                    editor.apply()
+                }
+                dialog.cancel()
+            }
+
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+    //Exibido no AlertDialog Regras do Jogo
+    private fun formataTextoExemploJogo(): SpannableString{
+        var textoDicaJogoFormatado: SpannableString = "".toSpannable() as SpannableString
+
+        if (dificuldade == 1){ //Dificuldade Fácil
+            textoDicaJogoFormatado = getText(R.string.txt_config_regras_jogo_facil).toSpannable() as SpannableString
+            textoDicaJogoFormatado.setSpan(StyleSpan(Typeface.BOLD), 0, 32, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            textoDicaJogoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)), 52, 53, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            textoDicaJogoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 60, 61, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            textoDicaJogoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 60, 61, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+
+            textoDicaJogoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)), 64, 65, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            textoDicaJogoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 106, 107, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            textoDicaJogoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 106, 107, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+
+        } else if (dificuldade == 3) { //Dificuldade Difícil
+            textoDicaJogoFormatado = getText(R.string.txt_config_regras_jogo_dificil).toSpannable() as SpannableString
+            textoDicaJogoFormatado.setSpan(StyleSpan(Typeface.BOLD), 0, 34, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            textoDicaJogoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 68, 69, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            textoDicaJogoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 68, 69, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            textoDicaJogoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)), 72, 73, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+
+            textoDicaJogoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.indigo_900)), 76, 77, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            textoDicaJogoFormatado.setSpan(ForegroundColorSpan(getColor(R.color.white)), 76, 77, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            textoDicaJogoFormatado.setSpan(BackgroundColorSpan(getColor(R.color.amber_500)), 128, 129, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+
+        }
+
+        return textoDicaJogoFormatado
     }
 
     // Retorna um número aleatório entre 0 e 9

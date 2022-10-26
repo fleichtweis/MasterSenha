@@ -14,5 +14,11 @@
         android:orderInCategory="2"
         android:title="@string/menu_configuracoes"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_ajuda"
+        android:icon="@drawable/ic_baseline_help_24"
+        android:orderInCategory="3"
+        android:title="@string/menu_ajuda"
+        app:showAsAction="ifRoom" />
 
 </menu>
