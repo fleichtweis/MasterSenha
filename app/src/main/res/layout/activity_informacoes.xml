@@ -6,6 +6,274 @@
     android:layout_height="match_parent"
     tools:context=".InformacoesActivity">
 
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_derrota_dificil_5_nao_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_5_num_nao_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_derrotas_dificil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_derrotas_dificil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_5_num_nao_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_derrota_dificil_5_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_5_num_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_derrotas_dificil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_derrotas_dificil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_5_num_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_derrota_dificil_4_nao_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_4_num_nao_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_derrotas_dificil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_derrotas_dificil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_4_num_nao_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_derrota_facil_5_nao_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_5_num_nao_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_derrotas_facil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_derrotas_facil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_5_num_nao_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_derrota_facil_5_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_5_num_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_derrotas_facil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_derrotas_facil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_5_num_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_derrota_facil_4_nao_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_4_num_nao_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_derrotas_facil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_derrotas_facil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_4_num_nao_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_derrota_dificil_4_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_4_num_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_derrotas_dificil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_derrotas_dificil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_4_num_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_derrota_facil_4_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_4_num_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_derrotas_facil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_derrotas_facil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_4_num_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_vitoria_dificil_5_nao_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_5_num_nao_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_vitorias_dificil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_vitorias_dificil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_5_num_nao_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_vitoria_dificil_5_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_5_num_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_vitorias_dificil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_vitorias_dificil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_5_num_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_vitoria_dificil_4_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_4_num_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_vitorias_dificil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_vitorias_dificil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_4_num_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_vitoria_dificil_4_nao_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_4_num_nao_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_vitorias_dificil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_vitorias_dificil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_4_num_nao_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_vitoria_facil_5_nao_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_5_num_nao_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_vitorias_facil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_vitorias_facil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_5_num_nao_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_vitoria_facil_5_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_5_num_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_vitorias_facil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_vitorias_facil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_5_num_distintos"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_vitoria_facil_4_nao_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_4_num_nao_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_vitorias_facil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_vitorias_facil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_4_num_nao_distintos"
+        tools:text="0" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/amber_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_vitorias_facil" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_derrotas_dificil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:text="@string/txt_estatisticas_dificil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_derrotas" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_derrotas_facil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_estatisticas_facil"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_derrotas" />
+
+    <TextView
+        android:id="@+id/txt_sobre_versao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_sobre_versao"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_app_nome" />
+
+    <TextView
+        android:id="@+id/txt_app_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_sobre" />
+
+    <TextView
+        android:id="@+id/txt_sobre_desenvolvedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/txt_sobre_desenvolvedor"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_sobre_informacoes" />
+
+    <TextView
+        android:id="@+id/txt_sobre_informacoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/txt_sobre_informacoes"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_sobre_versao" />
+
+    <TextView
+        android:id="@+id/txt_titulo_sobre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_sobre"
+        android:textColor="@color/indigo_900"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <TextView
+        android:id="@+id/txt_titulo_estatisticas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/txt_estatisticas"
+        android:textColor="@color/indigo_900"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_total_partidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/txt_estatisticas_total_partidas"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_estatisticas" />
+
     <View
         android:id="@+id/divider2"
         android:layout_width="0dp"
@@ -19,85 +287,178 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/txt_sobre_versao"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/txt_sobre_desenvolvedor"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/txt_sobre_informacoes"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/txt_sobre"
-        android:textColor="@color/indigo_900"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/txt_estatisticas"
-        android:textColor="@color/indigo_900"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.46" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_total_vitorias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/txt_estatisticas_total_vitorias"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_total_partidas" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_total_derrotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/txt_estatisticas_total_derrotas"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_total_vitorias" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_total_partidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_estatisticas"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_total_vitorias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_bd_total_partidas"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_total_derrotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_bd_total_vitorias"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_vitorias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/txt_estatisticas_vitorias"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_total_derrotas" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_derrotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_estatisticas_derrotas"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_vitorias" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_4_num_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/txt_estatisticas_4_distintos"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_vitorias_facil" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_4_num_nao_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/txt_estatisticas_4_nao_distintos"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_4_num_distintos" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_5_num_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/txt_estatisticas_5_distintos"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_4_num_nao_distintos" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_5_num_nao_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/txt_estatisticas_5_nao_distintos"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_5_num_distintos" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_vitorias_facil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_estatisticas_facil"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_vitorias" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_vitorias_dificil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:text="@string/txt_estatisticas_dificil"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_vitorias" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.73" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/amber_500"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_5_num_nao_distintos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/txt_estatisticas_vitorias" />
+
+    <TextView
+        android:id="@+id/txt_estatisticas_bd_vitoria_facil_4_distintos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_estatisticas_4_num_distintos"
+        app:layout_constraintEnd_toEndOf="@+id/txt_estatisticas_vitorias_facil"
+        app:layout_constraintStart_toStartOf="@+id/txt_estatisticas_vitorias_facil"
+        app:layout_constraintTop_toTopOf="@+id/txt_estatisticas_4_num_distintos"
+        tools:text="0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

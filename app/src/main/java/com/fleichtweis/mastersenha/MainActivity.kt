@@ -138,6 +138,13 @@ class MainActivity : AppCompatActivity() {
             exibirRegrasJogo(false)
         }
 
+        if (savedInstanceState != null){
+            senha = savedInstanceState.getSerializable("senha") as IntArray
+            mostrarSenha()
+            Log.i("saved", "onCreate $senha")
+        }
+
+
 
     }
 
@@ -199,10 +206,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
+    override fun onStart() {
         carregaConfiguracoes()
         componentesQuintoDigito()
-        super.onResume()
+        super.onStart()
     }
 
     //Ação do botão voltar do Android pressionado.
@@ -267,6 +274,27 @@ class MainActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
+    /*
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        //Salvar só se estiver jogando
+        outState.putSerializable("senha", senha)
+        Log.i("saved", "onSaved $senha")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        *//*for (i in 0 until numeroCasas){
+            senha[i] = savedInstanceState.getSerializable("senha")
+        }*//*
+        senha = savedInstanceState.getSerializable("senha") as IntArray
+        mostrarSenha()
+        Log.i("saved", "onRestore $senha")
+    }
+*/
 
     //Clique em um dos textviews da tentativa de senha
     fun textviewTentativa(view: View){
@@ -715,6 +743,9 @@ class MainActivity : AppCompatActivity() {
         componentesLimpaTextviewHistoricoTentativa()
         componentesLimpaTextviewTentativa()
         componentesLimpaTextviewSenha()
+
+        btnNovoAndTesteJogo.text = getText(R.string.btn_novo_jogo)
+        jogando = false
 
         componentesEstadoBotoesConfiguracao()
 

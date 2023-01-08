@@ -107,5 +107,16 @@
     <string name="btn_sobre_feedback">Feedback</string>
 
     <string name="txt_estatisticas">Estatísticas</string>
+    <string name="txt_estatisticas_total_partidas">Total de partidas:</string>
+    <string name="txt_estatisticas_total_vitorias">Total de vitórias:</string>
+    <string name="txt_estatisticas_total_derrotas">Total de derrotas:</string>
+    <string name="txt_estatisticas_vitorias">Vitórias</string>
+    <string name="txt_estatisticas_derrotas">Derrotas</string>
+    <string name="txt_estatisticas_facil">Fácil</string>
+    <string name="txt_estatisticas_dificil">Difícil</string>
+    <string name="txt_estatisticas_4_distintos">4 números distintos:</string>
+    <string name="txt_estatisticas_4_nao_distintos">4 números não distintos:</string>
+    <string name="txt_estatisticas_5_distintos">5 números distintos:</string>
+    <string name="txt_estatisticas_5_nao_distintos">5 números não distintos:</string>
 
 </resources>
