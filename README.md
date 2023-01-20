@@ -1,7 +1,9 @@
 <h1 align="center">MasterSenha</h1>
 
 ## :clipboard: **Descrição**
-App Master Senha é um jogo no estilo Mastermind. Objetivo: Descobrir a senha usando a lógica.
+App Master Senha é um jogo no estilo Mastermind. **Objetivo**: Descobrir a senha usando a lógica.
+
+*Este app foi criado no início do aprendizado da linguagem Kotlin, na qual estava começando a ter contato, como forma de aprender os conceitos básicos desta linguagem. Ao mesmo tempo em que aprendia os conceitos básicos sobre desenvolvimento de apps para Android.*
 
 ## :books: Funcionalidades do projeto
 
